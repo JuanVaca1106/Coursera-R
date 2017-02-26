@@ -3,4 +3,8 @@
 language: R
 sudo: false
 cache: packages
-r_binary_packages: dplyr, tidyr, map, graphics, readr
+r_binary_packages:
+  - dplyr
+  - reader
+  - grahpics
+  - map
