@@ -138,7 +138,7 @@ fars_summarize_years <- function(years) {
 #' @return a data.frame of filtered data
 #'
 #' @examples
-#' far_map_state(1, 2013)
+#' fars_map_state(1, 2013)
 #'
 #' @export
 fars_map_state <- function(state.num, year) {
