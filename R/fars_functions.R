@@ -133,7 +133,7 @@ fars_summarize_years <- function(years) {
 #' @importFrom maps map
 #' @importFrom graphics points
 #'
-#' @note This function depends on map and poitns from the maps and graphics function respectively.
+#' @note This function depends on map and points functions from the maps and graphics package respectively.
 #'
 #' @return a data.frame of filtered data
 #'

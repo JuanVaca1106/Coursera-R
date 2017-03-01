@@ -24,7 +24,7 @@ If there is no data for a state, the function will stop and throw an error. If t
 a message will be returning indicating this.
 }
 \note{
-This function depends on map and poitns from the maps and graphics function respectively.
+This function depends on map and points functions from the maps and graphics package respectively.
 }
 \examples{
 far_map_state(1, 2013)
