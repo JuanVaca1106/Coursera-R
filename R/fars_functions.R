@@ -1,15 +1,21 @@
-#' Read csv file
+#' Read in data from a csv file
 #'
-#' This is a simple function that will attempt to file into tbl df, if the file does not exist will return an error.
+#'\code{fars_read} returns a data.frame with data from the supplised csv file.
 #'
-#' @param filename a character vector of filename to read
+#' The function takes a character vector of a path of a filename to read into R.
+#' If the filename does not exist the function will stop and an error will be thrown.
 #'
-#' @return this function returns a dataframe of the data
+#' @importFrom readr read_csv
+#' @importFrom dplyr tbl_df
+#'
+#' @note fars_read depends on read_csv and tbl_df from the readr and dplyr packages respectively.
+#'
+#' @param filename a character vector of filename of a csv file to read
+#'
+#' @return this function returns a dataframe of the data read in from a csv file
 #'
 #' @examples
-#' fars_read(2013)
-#'
-#' @import readr read_csv
+#' fars_read("data/filename.csv")
 #'
 #' @export
 fars_read <- function(filename) {
@@ -25,16 +31,20 @@ fars_read <- function(filename) {
 
 #' Creates a filename based on year input
 #'
-#' This will create a character vector filename based on the year input
+#'\code{make_filename} will create a character vector filename with an assocaited year input
 #'
-#' @param year The year to be in the name of the file
+#' This takes a year input and creates a filename with this year.
+#' If the year is does not pass \code{as.integer} it will have a value of NA, and the function
+#' will throw an error after being passed to sprintf.
+#'
+#' @param year The year to be in the name of the file.
+#'
+#' @note This package does not depends on any extensions
 #'
 #' @return A character vector filename
 #'
 #' @examples
 #' make_filename(2013)
-#'
-#' @import readr read_csv
 #'
 #' @export
 make_filename <- function(year) {
@@ -45,16 +55,23 @@ make_filename <- function(year) {
 
 #' Read in multiple files by year
 #'
-#' This function will apply over a list of years and read in the data, if year is invalid error will trigger
+#'\code{fars_read_years} takes a vector of years it iterates over them to
+#'create filenames to read in and return with only the MONTH and year columns selected
 #'
-#' @param year The year to be in the name of the file
+#' The function will create a filename depending on the year input, if the file does not exist an error will be thrown.
+#' If it does exist, it will attempt to read them in, mutate a new column with the year and then select
+#' the columns MONTH and year.
 #'
-#' @return year
+#' @param years A vector of years to read in
+#'
+#' @importFrom dplyr mutate select
+#'
+#' @note this function depends on dplyr mutate and select functions
+#'
+#' @return returns a list of dataframes with columns MONTH and year
 #'
 #' @examples
 #' fars_read_years(c(2013, 2014))
-#'
-#' @import dplyr mutate
 #'
 #' @export
 fars_read_years <- function(years) {
@@ -73,17 +90,24 @@ fars_read_years <- function(years) {
 
 #' Summarse data by year
 #'
-#' THis function will summarise a list of year data
+#' \code{fars_summarize_years} takes a list of years and reads them in using the \code{fars_read_years}
+#' it then binds these dataframes together and summarises the data.
 #'
-#' @param years The years to summarise by
+#' The function will take in a vector of years and read in the data using the fars_summarize_years function,
+#' it then binds these rows together and groups by the year and MONTH column creating a count column: n.
+#' The data is then converted from a long format to a wide format using the spread function in tidyr.
 #'
-#' @return a data.frame of summarised data
+#' @param years The years to read in and summarise
+#'
+#' @importFrom dplyr bind_rows group_by summarize
+#' @importFrom tidyr spread
+#'
+#' @note This functions depends on the bind_rows, group_by, summarize functions from dplyr and spread from tidyr
+#'
+#' @return a data.frame of summarised data which is converted to a wide format
 #'
 #' @examples
 #' fars_summarize_years(c(2013, 2014))
-#'
-#' @import dplyr mutate
-#' @import tidyr spread
 #'
 #' @export
 fars_summarize_years <- function(years) {
@@ -94,21 +118,27 @@ fars_summarize_years <- function(years) {
     tidyr::spread(year, n)
 }
 
-#' Filter data by state number, if state number is invalid error will trigger
+#' Plots points where accidents for given state.num
 #'
-#' THis function will summarise a list of year data
+#' \code{fars_map_state} plots the state given as an integer
+#' argument and plots accidents for a given year
 #'
-#' @param state.num state numbers to filter
-#' @param year year of data to filter by
+#' The function will take a year and state and attempt to plot accidents for a given state number.
+#' If there is no data for a state, the function will stop and throw an error. If there are no accidents
+#' a message will be returning indicating this.
+#'
+#' @param state.num state number to plot accidents for
+#' @param year year of data to plot accidents that occured
+#'
+#' @importFrom maps map
+#' @importFrom graphics points
+#'
+#' @note This function depends on map and poitns from the maps and graphics function respectively.
 #'
 #' @return a data.frame of filtered data
 #'
 #' @examples
-#' far_map_state()
-#'
-#' @import dplyr mutate
-#' @import maps map
-#' @import graphics points
+#' far_map_state(1, 2013)
 #'
 #' @export
 fars_map_state <- function(state.num, year) {

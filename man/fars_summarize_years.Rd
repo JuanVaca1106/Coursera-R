@@ -7,13 +7,22 @@
 fars_summarize_years(years)
 }
 \arguments{
-\item{years}{The years to summarise by}
+\item{years}{The years to read in and summarise}
 }
 \value{
-a data.frame of summarised data
+a data.frame of summarised data which is converted to a wide format
 }
 \description{
-THis function will summarise a list of year data
+\code{fars_summarize_years} takes a list of years and reads them in using the \code{fars_read_years}
+it then binds these dataframes together and summarises the data.
+}
+\details{
+The function will take in a vector of years and read in the data using the fars_summarize_years function,
+it then binds these rows together and groups by the year and MONTH column creating a count column: n.
+The data is then converted from a long format to a wide format using the spread function in tidyr.
+}
+\note{
+This functions depends on the bind_rows, group_by, summarize functions from dplyr and spread from tidyr
 }
 \examples{
 fars_summarize_years(c(2013, 2014))

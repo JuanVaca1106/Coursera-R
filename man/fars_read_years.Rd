@@ -7,13 +7,22 @@
 fars_read_years(years)
 }
 \arguments{
-\item{year}{The year to be in the name of the file}
+\item{years}{A vector of years to read in}
 }
 \value{
-year
+returns a list of dataframes with columns MONTH and year
 }
 \description{
-This function will apply over a list of years and read in the data, if year is invalid error will trigger
+\code{fars_read_years} takes a vector of years it iterates over them to
+create filenames to read in and return with only the MONTH and year columns selected
+}
+\details{
+The function will create a filename depending on the year input, if the file does not exist an error will be thrown.
+If it does exist, it will attempt to read them in, mutate a new column with the year and then select
+the columns MONTH and year.
+}
+\note{
+this function depends on dplyr mutate and select functions
 }
 \examples{
 fars_read_years(c(2013, 2014))

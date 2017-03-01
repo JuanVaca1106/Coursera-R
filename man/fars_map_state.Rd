@@ -2,22 +2,31 @@
 % Please edit documentation in R/fars_functions.R
 \name{fars_map_state}
 \alias{fars_map_state}
-\title{Filter data by state number, if state number is invalid error will trigger}
+\title{Plots points where accidents for given state.num}
 \usage{
 fars_map_state(state.num, year)
 }
 \arguments{
-\item{state.num}{state numbers to filter}
+\item{state.num}{state number to plot accidents for}
 
-\item{year}{year of data to filter by}
+\item{year}{year of data to plot accidents that occured}
 }
 \value{
 a data.frame of filtered data
 }
 \description{
-THis function will summarise a list of year data
+\code{fars_map_state} plots the state given as an integer
+argument and plots accidents for a given year
+}
+\details{
+The function will take a year and state and attempt to plot accidents for a given state number.
+If there is no data for a state, the function will stop and throw an error. If there are no accidents
+a message will be returning indicating this.
+}
+\note{
+This function depends on map and poitns from the maps and graphics function respectively.
 }
 \examples{
-far_map_state()
+far_map_state(1, 2013)
 
 }
