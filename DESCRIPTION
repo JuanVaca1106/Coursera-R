@@ -13,7 +13,8 @@ Imports:
   readr,
   graphics,
   maps,
-  tidyr
+  tidyr,
+  magrittr
 Suggests: knitr,
     rmarkdown, testthat
 VignetteBuilder: knitr
