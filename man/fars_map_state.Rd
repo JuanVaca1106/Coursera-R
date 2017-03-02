@@ -27,6 +27,6 @@ a message will be returning indicating this.
 This function depends on map and points functions from the maps and graphics package respectively.
 }
 \examples{
-far_map_state(1, 2013)
+fars_map_state(1, 2013)
 
 }

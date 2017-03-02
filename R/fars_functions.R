@@ -64,7 +64,8 @@ make_filename <- function(year) {
 #'
 #' @param years A vector of years to read in
 #'
-#' @importFrom dplyr mutate select
+#' @importFrom dplyr mutate
+#' @importFrom dplyr select
 #'
 #' @note this function depends on dplyr mutate and select functions
 #'
@@ -99,7 +100,9 @@ fars_read_years <- function(years) {
 #'
 #' @param years The years to read in and summarise
 #'
-#' @importFrom dplyr bind_rows group_by summarize
+#' @importFrom dplyr bind_rows
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
 #' @importFrom tidyr spread
 #'
 #' @note This functions depends on the bind_rows, group_by, summarize functions from dplyr and spread from tidyr
@@ -132,6 +135,7 @@ fars_summarize_years <- function(years) {
 #'
 #' @importFrom maps map
 #' @importFrom graphics points
+#' @importFrom dplyr filter
 #'
 #' @note This function depends on map and points functions from the maps and graphics package respectively.
 #'
