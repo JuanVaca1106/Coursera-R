@@ -2,7 +2,9 @@
 % Please edit documentation in R/fars_functions.R
 \name{fars_read}
 \alias{fars_read}
-\title{Read in data from a csv file}
+\title{Read in data from a csv file
+## A note from the author:
+### Please leave feedback where appropriate.}
 \usage{
 fars_read(filename)
 }
@@ -20,7 +22,7 @@ The function takes a character vector of a path of a filename to read into R.
 If the filename does not exist the function will stop and an error will be thrown.
 }
 \note{
-fars_read depends on read_csv and tbl_df from the readr and dplyr packages respectively.
+fars_read depends on read_csv and tbl_df from the readr and dplyr packages respectively
 }
 \examples{
 fars_read("data/filename.csv")

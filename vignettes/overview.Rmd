@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-author: "Some guy"
+author: "Sahil Patel"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

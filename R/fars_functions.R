@@ -1,6 +1,6 @@
 #' Read in data from a csv file
-#' ## Anote from the authro:
-#' ### : Please leave feedback where appropriate.
+#' ## A note from the author:
+#' ### Please leave feedback where appropriate.
 #'
 #'\code{fars_read} returns a data.frame with data from the supplised csv file.
 #'

@@ -12,7 +12,7 @@ fars_map_state(state.num, year)
 \item{year}{year of data to plot accidents that occured}
 }
 \value{
-a data.frame of filtered data
+a data.frame of filtered data, if there are no rows then returns invisible(NULL)
 }
 \description{
 \code{fars_map_state} plots the state given as an integer

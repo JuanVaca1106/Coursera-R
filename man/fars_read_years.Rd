@@ -10,7 +10,7 @@ fars_read_years(years)
 \item{years}{A vector of years to read in}
 }
 \value{
-returns a list of dataframes with columns MONTH and year
+returns a list of dataframes with columns MONTH and year, NULL when an error is encountered
 }
 \description{
 \code{fars_read_years} takes a vector of years it iterates over them to

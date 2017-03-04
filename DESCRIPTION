@@ -1,7 +1,7 @@
 Package: week2
 Title: What the Package Does (one line, title case)
 Version: 0.0.0.9000
-Authors@R: person("Some", "Guy", email = "some.guy@example.com", role = c("aut", "cre"))
+Authors@R: person("Sahil", "Patel", email = "@example.com", role = c("aut", "cre"))
 Description: Functions to interact with data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System
 Depends: R (>= 3.3.2)
 License: GPL
