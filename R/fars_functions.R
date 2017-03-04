@@ -8,7 +8,7 @@
 #' @importFrom readr read_csv
 #' @importFrom dplyr tbl_df
 #'
-#' @note fars_read depends on read_csv and tbl_df from the readr and dplyr packages respectively.
+#' @note fars_read depends on read_csv and tbl_df from the readr and dplyr packages respectively
 #'
 #' @param filename a character vector of filename of a csv file to read
 #'
@@ -19,11 +19,18 @@
 #'
 #' @export
 fars_read <- function(filename) {
+  # Checks if the file exists
   if(!file.exists(filename))
+    # If the file does not exist, then throw an error and notify the user
     stop("file '", filename, "' does not exist")
+  # Suppress any messages
   data <- suppressMessages({
+    # Use read_csv from the readr package into the environment
+    ## Do not display progress bar
     readr::read_csv(filename, progress = FALSE)
   })
+  # Use the dplyr package to forward the argument to as.data.frame from the tibble package
+  ## Return the dataframe
   dplyr::tbl_df(data)
 }
 
@@ -48,7 +55,9 @@ fars_read <- function(filename) {
 #'
 #' @export
 make_filename <- function(year) {
+  # Attempt to coerce to integer type, this answer will be NA unless the coercion succeeds
   year <- as.integer(year)
+  # Return character vector containing formatted combination of text and variable values
   sprintf("accident_%d.csv.bz2", year)
 }
 
@@ -69,21 +78,30 @@ make_filename <- function(year) {
 #'
 #' @note this function depends on dplyr mutate and select functions
 #'
-#' @return returns a list of dataframes with columns MONTH and year
+#' @return returns a list of dataframes with columns MONTH and year, NULL when an error is encountered
 #'
 #' @examples
 #' fars_read_years(c(2013, 2014))
 #'
 #' @export
 fars_read_years <- function(years) {
+  # Apply a FUN to run on each vector element
   lapply(years, function(year) {
+    # Create a filename by passing the year to make_filename
     file <- make_filename(year)
+    # Implement condition system with tryCatch
     tryCatch({
+      # Read the file into the environment using fars_read
       dat <- fars_read(file)
+      # Add another variable with called year with the value year
       dplyr::mutate(dat, year = year) %>%
+        # select only the columns month and year
         dplyr::select(MONTH, year)
+      # Condition when error occures to warn the year with year and return NULL
     }, error = function(e) {
+      # Warning year
       warning("invalid year: ", year)
+      # Return NULL
       return(NULL)
     })
   })
@@ -114,10 +132,15 @@ fars_read_years <- function(years) {
 #'
 #' @export
 fars_summarize_years <- function(years) {
+  #  Pass the years to fars_read_years to read in a vector of data
   dat_list <- fars_read_years(years)
+  # Bind all the rows together
   dplyr::bind_rows(dat_list) %>%
+    # Group by the year and Month variable
     dplyr::group_by(year, MONTH) %>%
+    # Summarise the data and add a count column called n
     dplyr::summarize(n = n()) %>%
+    # Spread the data from long to wide format
     tidyr::spread(year, n)
 }
 
@@ -139,29 +162,42 @@ fars_summarize_years <- function(years) {
 #'
 #' @note This function depends on map and points functions from the maps and graphics package respectively.
 #'
-#' @return a data.frame of filtered data
+#' @return a data.frame of filtered data, if there are no rows then returns invisible(NULL)
 #'
 #' @examples
 #' fars_map_state(1, 2013)
 #'
 #' @export
 fars_map_state <- function(state.num, year) {
+  # pass the year to make_filename and assign the variable to filename
   filename <- make_filename(year)
+  # read in the data of the filename using fars_read
   data <- fars_read(filename)
+  # attempt to coerce state.num to integer type
   state.num <- as.integer(state.num)
-
+  # If state.num does not exists in the dat
+  #a column STATE
   if(!(state.num %in% unique(data$STATE)))
+    # Throw and error and notify
     stop("invalid STATE number: ", state.num)
+  # Assign a variable to data.subet that is the data variable filtered for the state.num function argument
   data.sub <- dplyr::filter(data, STATE == state.num)
+  # If there are no rows then message the user there is no accidents for this data
   if(nrow(data.sub) == 0L) {
+    # Message
     message("no accidents to plot")
+    # Return a temporary invisible copy of NULL
     return(invisible(NULL))
   }
+  # Deal with na values accordingly in the LONGITUD AND LATITUDE COLUMNS
   is.na(data.sub$LONGITUD) <- data.sub$LONGITUD > 900
   is.na(data.sub$LATITUDE) <- data.sub$LATITUDE > 90
+  # Evaluate environment constructed from data
   with(data.sub, {
+    # Draw lines and polygons as specified by the data
     maps::map("state", ylim = range(LATITUDE, na.rm = TRUE),
               xlim = range(LONGITUD, na.rm = TRUE))
+    # Draw points
     graphics::points(LONGITUD, LATITUDE, pch = 46)
   })
 }
