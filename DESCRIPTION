@@ -1,7 +1,7 @@
 Package: week2
-Title: What the Package Does (one line, title case)
+Title: Peer-graded Assignment: Building an R Package
 Version: 0.0.0.9000
-Authors@R: person("Sahil", "Patel", email = "@example.com", role = c("aut", "cre"))
+Author: Sahil Patel
 Description: Functions to interact with data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System
 Depends: R (>= 3.3.2)
 License: GPL
@@ -9,11 +9,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Depends:
-  dplyr,
-  readr,
-  graphics,
-  maps,
-  tidyr
-Suggests: knitr,
-    rmarkdown, testthat
+  dplyr, readr, graphics, maps, tidyr
+Suggests: 
+  knitr, rmarkdown, testthat
 VignetteBuilder: knitr
