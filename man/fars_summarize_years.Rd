@@ -25,6 +25,9 @@ The data is then converted from a long format to a wide format using the spread 
 This functions depends on the bind_rows, group_by, summarize functions from dplyr and spread from tidyr
 }
 \examples{
-fars_summarize_years(c(2013, 2014))
+\dontrun{
+  fars_summarize_years(c(2013, 2014))
+}
+
 
 }

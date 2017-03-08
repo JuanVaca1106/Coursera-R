@@ -27,6 +27,9 @@ a message will be returning indicating this.
 This function depends on map and points functions from the maps and graphics package respectively.
 }
 \examples{
-fars_map_state(1, 2013)
+\dontrun{
+  fars_map_state(1, 2013)
+}
+
 
 }

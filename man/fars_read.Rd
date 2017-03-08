@@ -25,6 +25,9 @@ If the filename does not exist the function will stop and an error will be throw
 fars_read depends on read_csv and tbl_df from the readr and dplyr packages respectively
 }
 \examples{
-fars_read("data/filename.csv")
+\dontrun{
+  fars_read("data/filename.csv")
+}
+
 
 }

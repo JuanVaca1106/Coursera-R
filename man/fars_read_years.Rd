@@ -25,6 +25,9 @@ the columns MONTH and year.
 this function depends on dplyr mutate and select functions
 }
 \examples{
-fars_read_years(c(2013, 2014))
+\dontrun{
+  fars_read_years(c(2013, 2014))
+}
+
 
 }

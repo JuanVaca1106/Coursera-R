@@ -24,6 +24,9 @@ will throw an error after being passed to sprintf.
 This package does not depends on any extensions
 }
 \examples{
-make_filename(2013)
+\dontrun{
+  make_filename(2013)
+}
+
 
 }
