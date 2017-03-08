@@ -2,7 +2,7 @@ Package: week2
 Title: Peer-graded Assignment: Building an R Package
 Version: 0.0.0.9000
 Author: Sahil Patel
-Maintainer: Sahil Patel
+Maintainer: Sahil Patel <email@example.com>
 Description: Functions to interact with data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System
 Depends: R (>= 3.3.2)
 License: GPL
