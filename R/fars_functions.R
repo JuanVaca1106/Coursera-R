@@ -17,7 +17,10 @@
 #' @return this function returns a dataframe of the data read in from a csv file
 #'
 #' @examples
-#' fars_read("data/filename.csv")
+#' \dontrun{
+#'   fars_read("data/filename.csv")
+#' }
+#'
 #'
 #' @export
 fars_read <- function(filename) {
@@ -53,7 +56,10 @@ fars_read <- function(filename) {
 #' @return A character vector filename
 #'
 #' @examples
-#' make_filename(2013)
+#' \dontrun{
+#'   make_filename(2013)
+#' }
+#'
 #'
 #' @export
 make_filename <- function(year) {
@@ -82,7 +88,10 @@ make_filename <- function(year) {
 #' @return returns a list of dataframes with columns MONTH and year, NULL when an error is encountered
 #'
 #' @examples
-#' fars_read_years(c(2013, 2014))
+#' \dontrun{
+#'   fars_read_years(c(2013, 2014))
+#' }
+#'
 #'
 #' @export
 fars_read_years <- function(years) {
@@ -127,7 +136,10 @@ fars_read_years <- function(years) {
 #' @return a data.frame of summarised data which is converted to a wide format
 #'
 #' @examples
-#' fars_summarize_years(c(2013, 2014))
+#' \dontrun{
+#'   fars_summarize_years(c(2013, 2014))
+#' }
+#'
 #'
 #' @export
 fars_summarize_years <- function(years) {
@@ -164,7 +176,10 @@ fars_summarize_years <- function(years) {
 #' @return a data.frame of filtered data, if there are no rows then returns invisible(NULL)
 #'
 #' @examples
-#' fars_map_state(1, 2013)
+#' \dontrun{
+#'   fars_map_state(1, 2013)
+#' }
+#'
 #'
 #' @export
 fars_map_state <- function(state.num, year) {
