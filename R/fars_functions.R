@@ -104,9 +104,11 @@ fars_read_years <- function(years) {
       # Read the file into the environment using fars_read
       dat <- fars_read(file)
       # Add another variable with called year with the value year
-      dplyr::mutate(dat, year = year) %>%
+      ## Updated change from NSE to SE
+      dplyr::mutate_(dat, year = year) %>%
         # select only the columns month and year
-        dplyr::select(MONTH, year)
+        ## Updated change from NSE to SE
+        dplyr::select_('MONTH', 'year')
       # Condition when error occures to warn the year with year and return NULL
     }, error = function(e) {
       # Warning year
@@ -148,11 +150,13 @@ fars_summarize_years <- function(years) {
   # Bind all the rows together
   dplyr::bind_rows(dat_list) %>%
     # Group by the year and Month variable
-    dplyr::group_by(year, MONTH) %>%
+    ## Updated change from NSE to SE
+    dplyr::group_by_('year', 'MONTH') %>%
     # Summarise the data and add a count column called n
-    dplyr::summarize(n = n()) %>%
+    ## Updated change from NSE to SE
+    dplyr::summarize_(n = ~n()) %>%
     # Spread the data from long to wide format
-    tidyr::spread(year, n)
+    tidyr::spread_('year', 'n')
 }
 
 #' Plots points where accidents for given state.num
@@ -195,7 +199,8 @@ fars_map_state <- function(state.num, year) {
     # Throw and error and notify
     stop("invalid STATE number: ", state.num)
   # Assign a variable to data.subet that is the data variable filtered for the state.num function argument
-  data.sub <- dplyr::filter(data, STATE == state.num)
+  ## Updated change from NSE to SE
+  data.sub <- dplyr::filter_(data, 'STATE' == state.num)
   # If there are no rows then message the user there is no accidents for this data
   if(nrow(data.sub) == 0L) {
     # Message
